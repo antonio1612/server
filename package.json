@@ -1,0 +1,15 @@
+{
+  "name": "servernodeexpress",
+  "version": "1.0.0",
+  "description": "servidor express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Iniciando servidor\" && exit 1"
+  },
+  "author": "Proyecto",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
