@@ -13,6 +13,8 @@ const db = require('./app/db/coneccion');
 var productoDestacado = require('./app/routes/producto_destacado');
 var productoPromocion = require('./app/routes/producto_promocion');
 var productoIndividual = require('./app/routes/producto_individual');
+var categorias = require('./app/routes/categorias');
+var categoriaProductos = require('./app/routes/categoria_productos');
 
 
 const app = express();
@@ -22,6 +24,8 @@ app.use(require('body-parser').urlencoded({extended: true}));
 app.use('/producto/destacado', productoDestacado);
 app.use('/producto/promocion', productoPromocion);
 app.use('/producto/individual', productoIndividual);
+app.use('/categorias', categorias);
+app.use('/categoria/productos', categoriaProductos);
 app.listen(3000,'127.0.0.1', ()=>console.log('Escuchando en el puerto 3000'));
 app.use(express.json({limit: '1mb'}));
 

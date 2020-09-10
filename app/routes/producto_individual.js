@@ -8,7 +8,7 @@ WHEN EXISTS (
     SELECT producto_promocion_estado 
     FROM producto_promocion 
     where now() >= producto_promocion_fecha_inicio 
-    and  now() < producto_promocion_fecha_final
+    and  now() < producto_promocion_fecha_fin
     and producto_promocion.producto_id = '2'
       LIMIT 1) 
       THEN true
@@ -49,12 +49,12 @@ router.post('/', (request, res) =>{
             producto.producto_descripcion as "2",
             producto.producto_precio as "3",
             producto.producto_imagen_src as "4",
-            producto_promocion.producto_promocion_porcentaje_descuento as "5",
-            producto_promocion.producto_promocion_fecha_final as "6"
+            producto_promocion.producto_promocion_descuento as "5",
+            producto_promocion.producto_promocion_fecha_fin as "6"
             from producto
             INNER join producto_promocion on producto_promocion.producto_id = producto.producto_id
             where producto.producto_id = '${id}' and  now() >= producto_promocion_fecha_inicio 
-            and  now() < producto_promocion_fecha_final;`).then((datos)=>{
+            and  now() < producto_promocion_fecha_fin;`).then((datos)=>{
                 consulta['1'] =  JSON.parse(JSON.stringify(datos));
                 res.status(200).json(consulta);
             
