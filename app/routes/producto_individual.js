@@ -3,25 +3,22 @@ const router = express.Router();
 express().use(express.json({limit: '1mb'}));
 
 const db = require('../db/coneccion')
-/*var comprobarPromocion = `SELECT CASE 
-WHEN EXISTS (
-    SELECT producto_promocion_estado 
-    FROM producto_promocion 
-    where now() >= producto_promocion_fecha_inicio 
-    and  now() < producto_promocion_fecha_fin
-    and producto_promocion.producto_id = '2'
-      LIMIT 1) 
-      THEN true
-ELSE false
-END`*/
+
 
 router.post('/', (request, res) =>{
     var consulta = {};
     var estado;
     var entradaString = JSON.stringify(request.body);
     var entrada = JSON.parse(entradaString);
+    console.log('=====================');
+    console.log(!request.body['0']);
+    console.log('=====================');
     var id = entrada["0"];
     console.log('Request de producto individual');
+
+     
+
+
 
     db.many(`SELECT CASE 
     WHEN EXISTS (
@@ -78,17 +75,8 @@ router.post('/', (request, res) =>{
 
         };
 
-        //res.status(200).json(consulta);
         
     })
 });
 
 module.exports =router;
-
-
-
-/**select
-producto.producto_promocion_estado
-from
-producto
-where producto.producto_id= 1*/
